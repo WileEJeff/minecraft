@@ -5,10 +5,10 @@
   </style>
   <script>
     function calculate() {
-      const x = document.getElementByID("xval").value
-      const z = document.getElementByID("zval").value
+      const x = document.querySelector("#xval").value
+      const z = document.querySelector("#zval").value
 
-      const resultsDiv = document.getElementById("results")
+      const resultsDiv = document.querySelector("#results")
       resultsDiv.classList.remove("empty-results")
       updateChunk(x, z)
       updateDisplay(x, z)
