@@ -1,6 +1,26 @@
 <html>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
+  body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .input {
+    flex-basis: 100%;
+  }
+
+  @media (min-width: 600px) {
+    body {
+      flex-wrap: nowrap;
+    }
+
+    .input {
+      flex-basis: 33%;
+    }
+  }
+
   .empty-results {
     visibility: hidden;
   }
@@ -41,7 +61,7 @@
     const z = parseInt(document.querySelector("#zval").value, 10)
 
     const resultsDiv = document.querySelector("#results")
-    if (x === NaN || z === NaN) {
+    if (isNan(x) || isNaN(z)) {
       if (!resultsDiv.classList.contains("empty-results")) {
         resultsDiv.classList.add("empty-results")
       }
@@ -122,17 +142,19 @@
   }
 </script>
 
-<h1>Minecraft Chunk Calculator</h1>
-<p>Input the X and Z coordinates (Y is height, which doesn't matter) and click "Calculate"</p>
-<form>
-  <input type="text" id="xval" placeholder="X Coord" onchange="calculate()">
-  <input type="text" id="zval" placeholder="Z Coord" onchange="calculate()">
-  <input type="button" id="calcButton" value="Calculate" onclick="calculate()">
-</form>
-<div id="results" class="empty-results">
-  <h2>Chunk <span id="xchunk"></span>, <span id="zchunk"></span></h2>
-  <h2>Position Within Chunk</h2>
-  <table id="grid"></table>
-</div>
+<body>
+  <h1>Minecraft Position-in-Chunk Visualizer</h1>
+  <div class="input">
+    <input type="text" id="xval" placeholder="X Coord" onchange="calculate()">
+  </div>
+  <div class="input">
+    <input type="text" id="zval" placeholder="Z Coord" onchange="calculate()">
+  </div>
+  <div id="results" class="empty-results">
+    <h2>Chunk <span id="xchunk"></span>, <span id="zchunk"></span></h2>
+    <h2>Position Within Chunk</h2>
+    <table id="grid"></table>
+  </div>
+</body>
 
 </html>
