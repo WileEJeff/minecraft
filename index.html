@@ -7,8 +7,13 @@
     justify-content: space-between;
   }
 
+  h1 {
+    flex-basis: 100%;
+  }
+
   .input {
     flex-basis: 100%;
+    font-size: 20pt;
   }
 
   @media (min-width: 600px) {
@@ -17,7 +22,8 @@
     }
 
     .input {
-      flex-basis: 33%;
+      flex-basis: 50%;
+      font-size: 14pt;
     }
   }
 
@@ -59,6 +65,22 @@
     background: #109040FF;
   }
 </style>
+
+<body>
+  <h1>Minecraft Position-in-Chunk Visualizer</h1>
+  <div class="input">
+    <input type="text" id="xval" placeholder="X Coord" onchange="calculate()">
+  </div>
+  <div class="input">
+    <input type="text" id="zval" placeholder="Z Coord" onchange="calculate()">
+  </div>
+  <div id="results" class="empty-results">
+    <h2>Chunk <span id="xchunk"></span>, <span id="zchunk"></span></h2>
+    <h2>Position Within Chunk</h2>
+    <table id="grid"></table>
+  </div>
+</body>
+
 <script>
   function calculate() {
     const x = parseInt(document.querySelector("#xval").value, 10)
@@ -145,20 +167,4 @@
     grid.appendChild(header())
   }
 </script>
-
-<body>
-  <h1>Minecraft Position-in-Chunk Visualizer</h1>
-  <div class="input">
-    <input type="text" id="xval" placeholder="X Coord" onchange="calculate()">
-  </div>
-  <div class="input">
-    <input type="text" id="zval" placeholder="Z Coord" onchange="calculate()">
-  </div>
-  <div id="results" class="empty-results">
-    <h2>Chunk <span id="xchunk"></span>, <span id="zchunk"></span></h2>
-    <h2>Position Within Chunk</h2>
-    <table id="grid"></table>
-  </div>
-</body>
-
 </html>
