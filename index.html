@@ -1,23 +1,23 @@
 <html>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
-  body {
+  #inputs {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
   }
 
-  h1 {
+  .input {
     flex-basis: 100%;
   }
 
-  .input {
-    flex-basis: 100%;
+  input {
     font-size: 20pt;
+    margin: 15px;
   }
 
   @media (min-width: 600px) {
-    body {
+    #inputs {
       flex-wrap: nowrap;
     }
 
@@ -31,16 +31,13 @@
     visibility: hidden;
   }
 
-  .x-coord-header, z-coord-header {
+  .x-coord-header,
+  .z-coord-header {
     font-weight: bold;
   }
 
-  .x-coord-header {
-    transform: rotate(-90deg);
-  }
-
   #grid {
-    width: 100%;
+    width: 90%;
   }
 
   @media (min-width: 600px) {
@@ -68,12 +65,14 @@
 
 <body>
   <h1>Minecraft Position-in-Chunk Visualizer</h1>
+  <div class="inputs">
   <div class="input">
     <input type="text" id="xval" placeholder="X Coord" onchange="calculate()">
   </div>
   <div class="input">
     <input type="text" id="zval" placeholder="Z Coord" onchange="calculate()">
   </div>
+</div>
   <div id="results" class="empty-results">
     <h2>Chunk <span id="xchunk"></span>, <span id="zchunk"></span></h2>
     <h2>Position Within Chunk</h2>
@@ -167,4 +166,5 @@
     grid.appendChild(header())
   }
 </script>
+
 </html>
