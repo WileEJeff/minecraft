@@ -33,7 +33,7 @@
       const chunkZ = Math.floor(z / 16)
       document.querySelector("#xchunk").innerHTML = "" + chunkX
       document.querySelector("#zchunk").innerHTML = "" + chunkZ
-      updateDisplay(x, z)
+      updateDisplay(x, z, chunkX, chunkZ)
       if (resultsDiv.classList.contains("empty-results")) {
         resultsDiv.classList.remove("empty-results")
       }
