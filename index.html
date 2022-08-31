@@ -25,11 +25,11 @@
 </style>
 <script>
   function calculate() {
-    const x = document.querySelector("#xval").value
-    const z = document.querySelector("#zval").value
+    const x = parseint(document.querySelector("#xval").value, 10)
+    const z = parseint(document.querySelector("#zval").value, 10)
 
     const resultsDiv = document.querySelector("#results")
-    if (x === "" || z === "") {
+    if (x === NaN || z === NaN) {
       if (!resultsDiv.classList.contains("empty-results")) {
         resultsDiv.classList.add("empty-results")
       }
@@ -113,8 +113,8 @@
 <h1>Minecraft Chunk Calculator</h1>
 <p>Input the X and Z coordinates (Y is height, which doesn't matter) and click "Calculate"</p>
 <form>
-  <input type="text" id="xval" placeholder="X Coord">
-  <input type="text" id="zval" placeholder="Z Coord">
+  <input type="text" id="xval" placeholder="X Coord" onchange="calculate()">
+  <input type="text" id="zval" placeholder="Z Coord" onchange="calculate()">
   <input type="button" id="calcButton" value="Calculate" onclick="calculate()">
 </form>
 <div id="results" class="empty-results">
