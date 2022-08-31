@@ -25,8 +25,12 @@
     visibility: hidden;
   }
 
-  .coord-header {
+  .x-coord-header, z-coord-header {
     font-weight: bold;
+  }
+
+  .x-coord-header {
+    transform: rotate(-90deg);
   }
 
   #grid {
@@ -61,7 +65,7 @@
     const z = parseInt(document.querySelector("#zval").value, 10)
 
     const resultsDiv = document.querySelector("#results")
-    if (isNan(x) || isNaN(z)) {
+    if (isNaN(x) || isNaN(z)) {
       if (!resultsDiv.classList.contains("empty-results")) {
         resultsDiv.classList.add("empty-results")
       }
@@ -94,7 +98,7 @@
       row.appendChild(document.createElement("td")) // blank corner
       for (let x = lowerX; x <= upperX; x++) {
         const cell = document.createElement("td")
-        cell.classList.add("coord-header")
+        cell.classList.add("x-coord-header")
         if (x == inputX) {
           cell.classList.add("matching-x")
         }
@@ -108,7 +112,7 @@
     const zRow = function (z) {
       const row = document.createElement("tr")
       const first = document.createElement("td")
-      first.classList.add("coord-header")
+      first.classList.add("z-coord-header")
       first.textContent = "" + z
       if (z == inputZ) {
         first.classList.add("matching-z")
@@ -125,7 +129,7 @@
         row.appendChild(cell)
       }
       const last = document.createElement("td")
-      last.classList.add("coord-header")
+      last.classList.add("z-coord-header")
       last.textContent = "" + z
       if (z == inputZ) {
         last.classList.add("matching-z")
