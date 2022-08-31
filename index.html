@@ -57,6 +57,7 @@
       row.appendChild(document.createElement("td")) // blank corner
       for (let x = lowerX; x <= upperX; x++) {
         const cell = document.createElement("td")
+        cell.classList.add("coord-header")
         if (x == inputX) {
           cell.classList.add("matching-x")
         }
