@@ -1,39 +1,113 @@
 <html>
-  <style>
-    .empty-results {visibility:hidden;}
-    #results {}
-  </style>
-  <script>
-    function calculate() {
-      const x = document.querySelector("#xval").value
-      const z = document.querySelector("#zval").value
+<style>
+  .empty-results {
+    visibility: hidden;
+  }
 
-      const resultsDiv = document.querySelector("#results")
-      resultsDiv.classList.remove("empty-results")
-      updateChunk(x, z)
-      updateDisplay(x, z)
-    }
+  .coord-header {
+    font-weight: bold;
+  }
 
-    function updateChunk(x, z) {
+  #grid .matching-x,
+  #grid .matching-z {
+    outline-width: 1px;
+    background: color #10904070;
+  }
+
+  #grid .matching-x.matching-z {
+    background: color #109040FF;
+  }
+</style>
+<script>
+  function calculate() {
+    const x = document.querySelector("#xval").value
+    const z = document.querySelector("#zval").value
+
+    const resultsDiv = document.querySelector("#results")
+    if (x === "" || y === "") {
+      if (!resultsDiv.classList.contains("empty-results")) {
+        resultsDiv.classList.add("empty-results")
+      }
+    } else {
       const chunkX = Math.floor(x / 16)
       const chunkZ = Math.floor(z / 16)
       document.querySelector("#xchunk").innerHTML = "" + chunkX
       document.querySelector("#zchunk").innerHTML = "" + chunkZ
+      updateDisplay(x, z)
+      if (resultsDiv.classList.contains("empty-results")) {
+        resultsDiv.classList.remove("empty-results")
+      }
     }
-    function updateDisplay(x, z) {
-      alert("update display here")
+  }
+
+  function updateDisplay(inputX, inputZ, chunkX, chunkZ) {
+    const grid = document.querySelector("#grid")
+    // Blank out any existing results
+    while (grid.firstChild) {
+      grid.removeChild(grid.firstChild);
     }
-  </script>
-  
-  <h1>Minecraft Chunk Calculator</h1>
-  <p>Input the X and Z coordinates (Y is height, which doesn't matter) and click "Calculate"</p>
-  <form>
-    <input type="text" id="xval" placeholder="X Coord">
-    <input type="text" id="zval" placeholder="Z Coord">
-    <input type="button" id="calcButton" value="Calculate" onclick="calculate()">
-  </form>
-  <div id="results" class="empty-results">
-    <h2>Chunk <span id="xchunk"></span>, <span id="zchunk"></span></h2>
-    <h2>Position Within Chunk</h2>
-  </div>
+
+    const lowerX = chunkX * 16
+    const upperX = lowerX + 15
+    const lowerZ = chunkZ * 16
+    const upperZ = lowerZ + 15
+
+    const header = function () {
+      const row = document.createElement("tr")
+      row.appendChild(document.createElement("td")) // blank corner
+      for (let x = lowerX; x <= upperX; x++) {
+        const cell = document.createElement("td")
+        if (x == inputX) {
+          cell.classList.add("matching-x")
+        }
+        row.appendChild(cell)
+      }
+      row.appendChild(document.createElement("td")) // blank corner
+      return row
+    }
+
+    const zRow = function (z) {
+      const row = document.createElement("tr")
+      const first = document.createElement("td")
+      first.classList.add("coord-header")
+      first.textContent = "" + z
+      row.appendChild(first)
+      for (let x = lowerX; x <= upperX; x++) {
+        const cell = document.createElement("td")
+        if (x == inputX) {
+          cell.classList.add("matching-x")
+        }
+        if (z == inputZ) {
+          cell.classList.add("matching-z")
+        }
+        row.appendChild(cell)
+      }
+      const last = document.createElement("td")
+      last.classList.add("coord-header")
+      last.textContent = "" + z
+      row.appendChild(last)
+      return row
+    }
+
+    grid.appendChild(header())
+    for (let z = lowerZ; z <= upperZ; z++) {
+      grid.appendChild(zRow(z))
+    }
+    grid.appendChild(header())
+  }
+</script>
+
+<h1>Minecraft Chunk Calculator</h1>
+<p>Input the X and Z coordinates (Y is height, which doesn't matter) and click "Calculate"</p>
+<form>
+  <input type="text" id="xval" placeholder="X Coord">
+  <input type="text" id="zval" placeholder="Z Coord">
+  <input type="button" id="calcButton" value="Calculate" onclick="calculate()">
+</form>
+<div id="results" class="empty-results">
+  <h2>Chunk <span id="xchunk"></span>, <span id="zchunk"></span></h2>
+  <h2>Position Within Chunk</h2>
+  <table id="grid"></table>
+</div>
+
 </html>
