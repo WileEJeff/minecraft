@@ -117,7 +117,9 @@
 
     const header = function () {
       const row = document.createElement("tr")
-      row.appendChild(document.createElement("td")) // blank corner
+      let corner = document.createElement("td")
+      corner.classList.add("x-coord-header")
+      row.appendChild(corner)
       for (let x = lowerX; x <= upperX; x++) {
         const cell = document.createElement("td")
         cell.classList.add("x-coord-header")
@@ -127,7 +129,9 @@
         cell.textContent = "" + x
         row.appendChild(cell)
       }
-      row.appendChild(document.createElement("td")) // blank corner
+      corner = document.createElement("td")
+      corner.classList.add("x-coord-header")
+      row.appendChild(corner)
       return row
     }
 
