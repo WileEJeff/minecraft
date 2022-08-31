@@ -1,9 +1,27 @@
 <html>
   <style>
+    .empty-results {visibility:hidden;}
+    #results {}
   </style>
   <script>
     function calculate() {
-      alert("hi")
+      const x = document.getElementByID("xval").value
+      const z = document.getElementByID("zval").value
+
+      const resultsDiv = document.getElementById("results")
+      resultsDiv.classList.remove("empty-results")
+      updateChunk(x, z)
+      updateDisplay(x, z)
+    }
+
+    function updateChunk(x, z) {
+      const chunkX = Math.floor(x / 16)
+      const chunkZ = Math.floor(z / 16)
+      document.querySelector("#xchunk").innerHTML = "" + chunkX
+      document.querySelector("#zchunk").innerHTML = "" + chunkZ
+    }
+    function updateDisplay(x, z) {
+      alert("update display here")
     }
   </script>
   
@@ -12,8 +30,10 @@
   <form>
     <input type="text" id="xval" placeholder="X Coord">
     <input type="text" id="zval" placeholder="Z Coord">
-    <input type="button" value="Calculate" onclick="calculate()">
+    <input type="button" id="calcButton" value="Calculate" onclick="calculate()">
   </form>
-  <div id="results">
+  <div id="results" class="empty-results">
+    <h2>Chunk <span id="xchunk"></span>, <span id="zchunk"></span></h2>
+    <h2>Position Within Chunk</h2>
   </div>
 </html>
