@@ -60,6 +60,7 @@
         if (x == inputX) {
           cell.classList.add("matching-x")
         }
+        cell.textContent = "" + x
         row.appendChild(cell)
       }
       row.appendChild(document.createElement("td")) // blank corner
@@ -71,6 +72,9 @@
       const first = document.createElement("td")
       first.classList.add("coord-header")
       first.textContent = "" + z
+      if (z == inputZ) {
+        first.classList.add("matching-z")
+      }
       row.appendChild(first)
       for (let x = lowerX; x <= upperX; x++) {
         const cell = document.createElement("td")
@@ -85,6 +89,9 @@
       const last = document.createElement("td")
       last.classList.add("coord-header")
       last.textContent = "" + z
+      if (z == inputZ) {
+        last.classList.add("matching-z")
+      }
       row.appendChild(last)
       return row
     }
