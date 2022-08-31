@@ -16,17 +16,6 @@
     margin: 15px;
   }
 
-  @media (min-width: 600px) {
-    #inputs {
-      flex-wrap: nowrap;
-    }
-
-    .input {
-      flex-basis: 50%;
-      font-size: 14pt;
-    }
-  }
-
   .empty-results {
     visibility: hidden;
   }
@@ -39,12 +28,6 @@
 
   #grid {
     width: 90%;
-  }
-
-  @media (min-width: 600px) {
-    .grid {
-      width: 50%;
-    }
   }
 
   #grid td {
@@ -63,6 +46,22 @@
   #grid .matching-x.matching-z {
     background: #109040FF;
   }
+
+  @media (min-width: 600px) {
+    #inputs {
+      flex-wrap: nowrap;
+    }
+
+    .input {
+      flex-basis: 50%;
+      font-size: 14pt;
+    }
+
+    .grid {
+      width: 50%;
+    }
+  }
+
 </style>
 
 <body>
