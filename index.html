@@ -47,14 +47,14 @@
   }
 
   #grid td {
-    outline-width: 1px;
-    outline-color: #000000;
+    border-width: 1px;
+    border-color: #000000;
   }
 
   #grid .matching-x,
   #grid .matching-z {
-    outline-width: 2px;
-    outline-color: #109040;
+    border-width: 2px;
+    border-color: #109040;
     background: #10904070;
   }
 
@@ -66,13 +66,13 @@
 <body>
   <h1>Minecraft Position-in-Chunk Visualizer</h1>
   <div class="inputs">
-  <div class="input">
-    <input type="text" id="xval" placeholder="X Coord" onchange="calculate()">
+    <div class="input">
+      <input type="text" id="xval" placeholder="X Coord" onchange="calculate()">
+    </div>
+    <div class="input">
+      <input type="text" id="zval" placeholder="Z Coord" onchange="calculate()">
+    </div>
   </div>
-  <div class="input">
-    <input type="text" id="zval" placeholder="Z Coord" onchange="calculate()">
-  </div>
-</div>
   <div id="results" class="empty-results">
     <h2>Chunk <span id="xchunk"></span>, <span id="zchunk"></span></h2>
     <h2>Position Within Chunk</h2>
