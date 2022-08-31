@@ -64,7 +64,7 @@
 </style>
 
 <body>
-  <h1>Position-in-Chunk Visualizer</h1>
+  <h1>Enter Coordinates</h1>
   <div class="inputs">
     <div class="input">
       <input type="text" id="xval" placeholder="X Coord" onchange="calculate()">
@@ -74,9 +74,6 @@
     </div>
   </div>
   <div id="results" class="empty-results">
-    <div>
-      Chunk <span id="xchunk"></span>, <span id="zchunk"></span>
-    </div>
     <h2>Position Within Chunk</h2>
     <table id="grid"></table>
   </div>
@@ -95,8 +92,6 @@
     } else {
       const chunkX = Math.floor(x / 16)
       const chunkZ = Math.floor(z / 16)
-      document.querySelector("#xchunk").innerHTML = "" + chunkX
-      document.querySelector("#zchunk").innerHTML = "" + chunkZ
       updateDisplay(x, z, chunkX, chunkZ)
       if (resultsDiv.classList.contains("empty-results")) {
         resultsDiv.classList.remove("empty-results")
